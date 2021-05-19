@@ -4,7 +4,7 @@
 #
 Name     : QAT_engine
 Version  : v0.6.5
-Release  : 1
+Release  : 2
 URL      : https://github.com/intel/QAT_Engine/archive/refs/tags/v0.6.5.tar.gz
 Source0  : https://github.com/intel/QAT_Engine/archive/refs/tags/v0.6.5.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
@@ -49,7 +49,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1616777011
+export SOURCE_DATE_EPOCH=1621443379
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -69,7 +69,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1616777011
+export SOURCE_DATE_EPOCH=1621443379
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
 cp %{_builddir}/QAT_Engine-0.6.5/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/57f5309a41a66a8f5d057151c44f987757468164
