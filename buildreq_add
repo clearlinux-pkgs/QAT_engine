@@ -2,4 +2,5 @@
 # picked up automatically. One name per line, no whitespace.
 intel-ipsec-mb-dev
 ipp-crypto-dev
+qatlib-dev
 	

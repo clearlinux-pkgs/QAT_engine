@@ -1,1 +1,1 @@
---enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw 
+--enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw  --enable-qat_hw

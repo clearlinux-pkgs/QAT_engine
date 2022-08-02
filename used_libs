@@ -1,2 +1,4 @@
 libIPSec_MB.so.1
 libc.so.6
+libqat.so.3
+libusdm.so.0

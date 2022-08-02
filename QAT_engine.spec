@@ -4,18 +4,19 @@
 #
 Name     : QAT_engine
 Version  : 0.6.14
-Release  : 11
+Release  : 12
 URL      : https://github.com/intel/QAT_Engine/archive/v0.6.14/QAT_Engine-0.6.14.tar.gz
 Source0  : https://github.com/intel/QAT_Engine/archive/v0.6.14/QAT_Engine-0.6.14.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause GPL-2.0 OpenSSL
+License  : Apache-2.0 BSD-3-Clause GPL-2.0 MIT OpenSSL
 Requires: QAT_engine-lib = %{version}-%{release}
 Requires: QAT_engine-license = %{version}-%{release}
 BuildRequires : intel-ipsec-mb-dev
 BuildRequires : ipp-crypto-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(libcrypto)
+BuildRequires : qatlib-dev
 
 %description
 This package provides the Intel QuickAssist Technology OpenSSL Engine
@@ -49,7 +50,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1658500393
+export SOURCE_DATE_EPOCH=1659459542
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -58,7 +59,7 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
 export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
-%autogen --disable-static --enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw
+%autogen --disable-static --enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw  --enable-qat_hw
 make  %{?_smp_mflags}
 
 %check
@@ -69,13 +70,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1658500393
+export SOURCE_DATE_EPOCH=1659459542
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
-cp %{_builddir}/QAT_Engine-0.6.14/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/077140cc63b33bd8d34df92c358f3056e63f6f43
-cp %{_builddir}/QAT_Engine-0.6.14/LICENSE.OPENSSL3.0 %{buildroot}/usr/share/package-licenses/QAT_engine/c5c8a68f4b80929b3e66f054f37bb9e16078847f
-cp %{_builddir}/QAT_Engine-0.6.14/qat/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/QAT_Engine-0.6.14/qat_contig_mem/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/077140cc63b33bd8d34df92c358f3056e63f6f43
+cp %{_builddir}/QAT_Engine-%{version}/LICENSE.BORINGSSL %{buildroot}/usr/share/package-licenses/QAT_engine/780e9c21e5fcb60d7580ef142cca50fbfd16d194
+cp %{_builddir}/QAT_Engine-%{version}/LICENSE.OPENSSL3.0 %{buildroot}/usr/share/package-licenses/QAT_engine/c5c8a68f4b80929b3e66f054f37bb9e16078847f
+cp %{_builddir}/QAT_Engine-%{version}/qat/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/QAT_Engine-%{version}/qat_contig_mem/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 %make_install
 
 %files
@@ -89,4 +91,5 @@ cp %{_builddir}/QAT_Engine-0.6.14/qat_contig_mem/LICENSE.GPL %{buildroot}/usr/sh
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 /usr/share/package-licenses/QAT_engine/077140cc63b33bd8d34df92c358f3056e63f6f43
+/usr/share/package-licenses/QAT_engine/780e9c21e5fcb60d7580ef142cca50fbfd16d194
 /usr/share/package-licenses/QAT_engine/c5c8a68f4b80929b3e66f054f37bb9e16078847f
