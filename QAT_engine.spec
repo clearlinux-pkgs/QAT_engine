@@ -4,7 +4,7 @@
 #
 Name     : QAT_engine
 Version  : 0.6.15
-Release  : 13
+Release  : 14
 URL      : https://github.com/intel/QAT_Engine/archive/v0.6.15/QAT_Engine-0.6.15.tar.gz
 Source0  : https://github.com/intel/QAT_Engine/archive/v0.6.15/QAT_Engine-0.6.15.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
@@ -49,7 +49,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662670483
+export SOURCE_DATE_EPOCH=1663023511
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -69,7 +69,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1662670483
+export SOURCE_DATE_EPOCH=1663023511
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/077140cc63b33bd8d34df92c358f3056e63f6f43 || :
@@ -84,7 +84,7 @@ cp %{_builddir}/QAT_Engine-%{version}/qat_contig_mem/LICENSE.GPL %{buildroot}/us
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/engines-1.1/qatengine.so
+/usr/lib64/engines-3/qatengine.so
 
 %files license
 %defattr(0644,root,root,0755)
