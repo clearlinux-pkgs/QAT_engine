@@ -1,4 +1,3 @@
-Configure miss: /usr/include/qat/icp_sal_versions.h
+Configure miss: /usr/local/lib/libcrypto_mb.so
 Configure miss: g++ option to enable C++11 features
-Configure miss: mbx_getversion in -lcrypto_mb
 Configure miss: x86_64-generic-linux-gnu-file
