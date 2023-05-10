@@ -4,10 +4,10 @@
 # Using build pattern: autogen
 #
 Name     : QAT_engine
-Version  : 1.0.0
-Release  : 20
-URL      : https://github.com/intel/QAT_Engine/archive/v1.0.0/QAT_Engine-1.0.0.tar.gz
-Source0  : https://github.com/intel/QAT_Engine/archive/v1.0.0/QAT_Engine-1.0.0.tar.gz
+Version  : 1.1.0
+Release  : 21
+URL      : https://github.com/intel/QAT_Engine/archive/v1.1.0/QAT_Engine-1.1.0.tar.gz
+Source0  : https://github.com/intel/QAT_Engine/archive/v1.1.0/QAT_Engine-1.1.0.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause GPL-2.0 MIT OpenSSL
@@ -44,35 +44,49 @@ license components for the QAT_engine package.
 
 
 %prep
-%setup -q -n QAT_Engine-1.0.0
-cd %{_builddir}/QAT_Engine-1.0.0
+%setup -q -n QAT_Engine-1.1.0
+cd %{_builddir}/QAT_Engine-1.1.0
+pushd ..
+cp -a QAT_Engine-1.1.0 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679673753
+export SOURCE_DATE_EPOCH=1683739781
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %autogen --disable-static --enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw  --enable-qat_hw
 make  %{?_smp_mflags}
 
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+%autogen --disable-static --enable-multibuff_offload   --enable-multibuff_ecx  --enable-ipsec_offload --enable-qat_sw  --enable-qat_hw
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
+cd ../buildavx2;
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1679673753
+export SOURCE_DATE_EPOCH=1683739781
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/c576331dd58e68f60de2253b39c68360305dc3cd || :
@@ -81,13 +95,18 @@ cp %{_builddir}/QAT_Engine-%{version}/LICENSE.OPENSSL3.0 %{buildroot}/usr/share/
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE.PLOCK %{buildroot}/usr/share/package-licenses/QAT_engine/4ce35caa09da4d30051641503742239ee69b970e || :
 cp %{_builddir}/QAT_Engine-%{version}/qat_contig_mem/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec || :
 cp %{_builddir}/QAT_Engine-%{version}/qat_hw_config/LICENSE.GPL %{buildroot}/usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/engines-3/qatengine.so
 /usr/lib64/engines-3/qatengine.so
 
 %files license

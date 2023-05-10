@@ -1,4 +1,8 @@
 Configure miss: /usr/local/lib/libcrypto_mb.so
+Configure miss: /usr/local/lib/libcrypto_mb.so
+Configure miss: /usr/quickassist/lookaside/access_layer/src/common/crypto/kpt/crypto/lac_kpt_crypto_qat_comms.c
 Configure miss: /usr/quickassist/lookaside/access_layer/src/common/crypto/kpt/crypto/lac_kpt_crypto_qat_comms.c
 Configure miss: g++ option to enable C++11 features
+Configure miss: g++ option to enable C++11 features
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
