@@ -4,10 +4,10 @@
 # Using build pattern: autogen
 #
 Name     : QAT_engine
-Version  : 1.1.0
-Release  : 22
-URL      : https://github.com/intel/QAT_Engine/archive/v1.1.0/QAT_Engine-1.1.0.tar.gz
-Source0  : https://github.com/intel/QAT_Engine/archive/v1.1.0/QAT_Engine-1.1.0.tar.gz
+Version  : 1.3.0
+Release  : 23
+URL      : https://github.com/intel/QAT_Engine/archive/v1.3.0/QAT_Engine-1.3.0.tar.gz
+Source0  : https://github.com/intel/QAT_Engine/archive/v1.3.0/QAT_Engine-1.3.0.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause GPL-2.0 MIT OpenSSL
@@ -44,10 +44,10 @@ license components for the QAT_engine package.
 
 
 %prep
-%setup -q -n QAT_Engine-1.1.0
-cd %{_builddir}/QAT_Engine-1.1.0
+%setup -q -n QAT_Engine-1.3.0
+cd %{_builddir}/QAT_Engine-1.3.0
 pushd ..
-cp -a QAT_Engine-1.1.0 buildavx2
+cp -a QAT_Engine-1.3.0 buildavx2
 popd
 
 %build
@@ -55,7 +55,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685545290
+export SOURCE_DATE_EPOCH=1692005403
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -86,10 +86,10 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1685545290
+export SOURCE_DATE_EPOCH=1692005403
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
-cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/c576331dd58e68f60de2253b39c68360305dc3cd || :
+cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/4a1389a09e18e09d701034f73cd234ba35e1bd04 || :
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE.BORINGSSL %{buildroot}/usr/share/package-licenses/QAT_engine/780e9c21e5fcb60d7580ef142cca50fbfd16d194 || :
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE.OPENSSL3.0 %{buildroot}/usr/share/package-licenses/QAT_engine/c5c8a68f4b80929b3e66f054f37bb9e16078847f || :
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE.PLOCK %{buildroot}/usr/share/package-licenses/QAT_engine/4ce35caa09da4d30051641503742239ee69b970e || :
@@ -112,7 +112,7 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/QAT_engine/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+/usr/share/package-licenses/QAT_engine/4a1389a09e18e09d701034f73cd234ba35e1bd04
 /usr/share/package-licenses/QAT_engine/4ce35caa09da4d30051641503742239ee69b970e
 /usr/share/package-licenses/QAT_engine/780e9c21e5fcb60d7580ef142cca50fbfd16d194
-/usr/share/package-licenses/QAT_engine/c576331dd58e68f60de2253b39c68360305dc3cd
 /usr/share/package-licenses/QAT_engine/c5c8a68f4b80929b3e66f054f37bb9e16078847f
