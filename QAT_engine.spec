@@ -6,11 +6,11 @@
 # autospec commit: c1050fe
 #
 Name     : QAT_engine
-Version  : 1.4.0
-Release  : 27
-URL      : https://github.com/intel/QAT_Engine/archive/v1.4.0/QAT_Engine-1.4.0.tar.gz
-Source0  : https://github.com/intel/QAT_Engine/archive/v1.4.0/QAT_Engine-1.4.0.tar.gz
-Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
+Version  : 1.5.0
+Release  : 28
+URL      : https://github.com/intel/QAT_Engine/archive/v1.5.0/QAT_Engine-1.5.0.tar.gz
+Source0  : https://github.com/intel/QAT_Engine/archive/v1.5.0/QAT_Engine-1.5.0.tar.gz
+Summary  : Intel QuickAssist Technology(QAT) OpenSSL Engine
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause GPL-2.0 MIT OpenSSL
 Requires: QAT_engine-lib = %{version}-%{release}
@@ -46,10 +46,10 @@ license components for the QAT_engine package.
 
 
 %prep
-%setup -q -n QAT_Engine-1.4.0
-cd %{_builddir}/QAT_Engine-1.4.0
+%setup -q -n QAT_Engine-1.5.0
+cd %{_builddir}/QAT_Engine-1.5.0
 pushd ..
-cp -a QAT_Engine-1.4.0 buildavx2
+cp -a QAT_Engine-1.5.0 buildavx2
 popd
 
 %build
@@ -57,7 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702078064
+export SOURCE_DATE_EPOCH=1703780891
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -108,7 +108,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1702078064
+export SOURCE_DATE_EPOCH=1703780891
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/QAT_engine
 cp %{_builddir}/QAT_Engine-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/QAT_engine/4a1389a09e18e09d701034f73cd234ba35e1bd04 || :
