@@ -1,5 +1,3 @@
-Configure miss: /include/openssl/ossl_typ.h
-Configure miss: /include/openssl/ossl_typ.h
 Configure miss: /usr/local/lib/libcrypto_mb.so
 Configure miss: /usr/local/lib/libcrypto_mb.so
 Configure miss: /usr/quickassist/lookaside/access_layer/src/common/crypto/kpt/crypto/lac_kpt_crypto_qat_comms.c
