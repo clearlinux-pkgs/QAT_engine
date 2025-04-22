@@ -7,7 +7,7 @@
 #
 Name     : QAT_engine
 Version  : 1.9.0
-Release  : 35
+Release  : 36
 URL      : https://github.com/intel/QAT_Engine/archive/v1.9.0/QAT_Engine-1.9.0.tar.gz
 Source0  : https://github.com/intel/QAT_Engine/archive/v1.9.0/QAT_Engine-1.9.0.tar.gz
 Summary  : Intel QuickAssist Technology (QAT) OpenSSL Engine
